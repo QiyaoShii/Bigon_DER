@@ -1,0 +1,15 @@
+function Jacobian = Subsystem_J( S, m1, m2, refTIter, mMat, refLen, voronoiRefLen, kappaBar, ne)  
+
+%% equation
+   
+
+ % Get Jacobian
+    [Js] = getJs(S, refLen ,ne);
+    [Jt] = getJt(S, refTIter, voronoiRefLen, ne);
+    [Jb] = getJb(S, m1, m2, voronoiRefLen, kappaBar ,ne);
+    
+    Jacobian = Js + Jt + Jb;
+    Jacobian = inv(mMat)*Jacobian ;
+
+
+end
