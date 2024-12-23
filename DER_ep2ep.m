@@ -1,4 +1,4 @@
-function prob = DER_BP2ep(prob, oid, varargin)
+function prob = DER_ep2ep(prob, oid, varargin)
 global natR alpha N_Seg NC
 global Segments Joints
 
@@ -14,7 +14,7 @@ data.Segments = Segments;
 data.Joints = Joints;
 data.currentX = read_data{3,2}.currentX;  
 
-prob = ode_BP2ep(prob,Newtonoid,str); % Construct 'coll' instance
+prob = ode_ep2ep(prob,Newtonoid,str); % Construct 'coll' instance
 
 data.tbid = 'reference_frame';
 data = coco_func_data(data); % Convert to func_data class for shared access
@@ -27,18 +27,7 @@ function data = frame_update(prob, data, cseg, varargin)
 global N_Seg 
 global Segments Joints
 
-
 X  = cseg.src_chart.x;
-
-if abs(X(end-1) - 1.1737) <= 0.00005
-
-    read_data=coco_read_solution('','Branch 1_30',1);
-    data = struct();
-    Segments = read_data{3,2}.Segments;
-    Joints = read_data{3,2}.Joints;
-    return
-
-end
 
 Length=size(X,1);x=X(1:(Length-2)/2);
 % BCLeft = [0;0;0;0;(1/N_Seg)*cos(pi/(2*N_Seg)+X(end-1));0;(1/N_Seg)*sin(pi/(2*N_Seg)+X(end-1))];
@@ -66,6 +55,7 @@ for i = 1:2
 end
 data.Segments = Segments;
 
+
 [Joints{1}.d1,Joints{1}.d2] = computeTimeParallel(Joints{1}.d1, Joints{1}.DOF, J_DOF{1});
 [Joints{1}.m1,Joints{1}.m2] = computeMaterialDirectors(Joints{1}.d1, Joints{1}.d2, J_DOF{1}(4:4:end));
 Joints{1}.DOF = J_DOF{1};
@@ -76,5 +66,4 @@ for j = 1: (size(Joints{1}.DOF,1)+1)/4
     Joints{1}.Nodes(j,2) = Joints{1}.DOF(4*(j-1)+2);
     Joints{1}.Nodes(j,3) = Joints{1}.DOF(4*(j-1)+3);
 end
-
 end

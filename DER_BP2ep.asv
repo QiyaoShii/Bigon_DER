@@ -36,8 +36,6 @@ if abs(X(end-1) - 1.1737) <= 0.00005
     data = struct();
     Segments = read_data{3,2}.Segments;
     Joints = read_data{3,2}.Joints;
-    return
-
 end
 
 Length=size(X,1);x=X(1:(Length-2)/2);

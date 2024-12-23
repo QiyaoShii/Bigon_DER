@@ -26,9 +26,6 @@ U = [zeros(7,1);u;zeros(7,1)];
 DOF_system = Bigon_DOF_Manager(N_Seg);
 [Seg_DOF,J_DOF] = Divide_subsystem(DOF_system,x);
 
-% J_DOF=
-
-
 %%segments equations
 Seg_F = cell(2,1);
 Buffer.m1 = cell(2,1);
@@ -64,7 +61,6 @@ i=1;
 
 %%totle equations
 Totle_F = Assembly_Vector(DOF_system,Seg_F,Joint_F);
-%Totle_F = Assembly_Vector(N_Seg,Seg_F,Joint_F);
 
 %%get rid of constrained equations
 UnTotle_F = Totle_F(8:end-7);
