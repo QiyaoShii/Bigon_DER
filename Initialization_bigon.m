@@ -4,7 +4,7 @@ global rho Y EA GJ EI1 EI2
 global Segments Joints 
 global Totle_Mass
 %%discrete message
-N_Seg = 50;
+N_Seg = 30;
 
 %geometry parameters
 w = 0.0004;   %rectangle cross-section
@@ -49,19 +49,8 @@ for i = 1:2
     Mass{i} = Segments{i}.mass; 
 end
 
-Totle_Mass = Bigon_GetInitialvaluefromeSegs(N_Seg,Mass);
-X0 = Bigon_GetInitialvaluefromeSegs(N_Seg,DOF);
-
-
-% %%Initial value for solving ODE
-% Mass=cell(2,1);
-% for i = 1:2
-%     Mass{i} = Segments{i}.mass; 
-% end
-% 
-% DOF=Bigon_Initial_Solution(N_Seg);
-% Totle_Mass = Bigon_GetInitialvaluefromeSegs(N_Seg,Mass);
-% X0 = Bigon_GetInitialvaluefromeSegs(N_Seg,DOF);
+Totle_Mass = GetInitialvaluefromeSegs(N_Seg,Mass);
+X0 = GetInitialvaluefromeSegs(N_Seg,DOF);
 
 
 Initialvalue = [X0(8:end-7);zeros(size(X0,1)-14,1)];

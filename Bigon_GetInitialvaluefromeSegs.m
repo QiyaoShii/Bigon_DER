@@ -1,4 +1,4 @@
-function X0 = Bigon_GetInitialvaluefromeSegs(N_Seg,DOF)
+function X0 = GetInitialvaluefromeSegs(N_Seg,DOF)
 
 % the index of each segmens DOF in global DOF 
     Left_End_idx=[1:4*N_Seg,4*N_Seg+5:4*N_Seg+11];
