@@ -45,30 +45,21 @@ prob = coco_set(prob, 'cont', 'NPR',300 ,'PtMX', 5000,'h_min',0.01,'h_max',0.5,'
 prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',500);
 run=coco(prob, 'Branch 1_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.01]);
 
-%% Branch 1c
-prob = coco_prob();
-prob = coco_set(prob, 'ode', 'vectorized', false);
-
-prob=DER_ep2ep(prob,'','Branch 1_30',3);
-prob=coco_add_func(prob,'gamma',@ANGLE,[],'regular','alpha','uidx',xidx);
-prob = coco_add_event(prob, 'UZ', 'gamma', pi/4);
-prob = coco_add_event(prob, 'UZ', 'gamma', 2*pi/3);
-
-prob = coco_set(prob, 'cont', 'NPR',300 ,'PtMX', 1000000,'h_min',0.01,'h_max',0.5,'MaxRes', 200); 
-prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',50);
-run=coco(prob, 'Branch 1_30c', [], 1, {'gamma','alpha'} ,[0,pi/2-0.0]);
 %% Branch 2
 prob = coco_prob();
 prob = coco_set(prob, 'ode', 'vectorized', false);
 
-prob=Bigon_DER_BP2ep(prob,'','Test5',24);
-prob=coco_add_func(prob,'gamma',@ANGLE,[],'regular','gamma','uidx',xidx);
+prob=DER_BP2ep(prob,'','Basic_30',26);
+prob=coco_add_func(prob,'gamma',@ANGLE,[],'regular','alpha','uidx',xidx);
+prob = coco_add_event(prob, 'UZ', 'gamma', pi/6);
+prob = coco_add_event(prob, 'UZ', 'gamma', 2*pi/3);
 
-prob = coco_set(prob, 'cont', 'NPR',10 ,'PtMX', 1000000,'h_min',10^-15,'h_max',0.5,'MaxRes', 20); 
-prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',50);
-run=coco(prob, 'Branch 2', [], 1, {'dx' 'gamma'} ,[0,pi/2-0.1]);
+prob = coco_set(prob, 'cont', 'NPR',100 ,'PtMX', 5000,'h_min',0.01,'h_max',0.5,'MaxRes', 200); 
+prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',500);
+run=coco(prob, 'Branch 2_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.01]);
+
 %% Test stability
-index=104;
+index=7;
 indices = find(real(bd_data{3, 2}{index, 15}  ) > 0);
 for i=1:size(indices,1)
     bd_data{3, 2}{index, 15}(indices(i),1)
