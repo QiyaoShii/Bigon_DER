@@ -12,7 +12,7 @@ for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
         Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
-surf(Rx,Ry,Rz,'FaceColor','k','EdgeColor','none');hold on
+surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
 
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
@@ -22,10 +22,10 @@ for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
         Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
-surf(Rx,Ry,Rz,'FaceColor','k','EdgeColor','none');
+surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');
 
 axis equal
-
+view([0,1,0])
 
 %% planer configuration 150 degree
 
@@ -151,7 +151,7 @@ for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
         Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
-surf(Rx,Ry,Rz,'FaceColor','b','EdgeColor','none');hold on
+surf(Rz,Rx,Ry,'FaceColor','b','EdgeColor','none');hold on
 
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
@@ -161,7 +161,7 @@ for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
         Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
-surf(Rx,Ry,Rz,'FaceColor','b','EdgeColor','none');hold on
+surf(Rz,Rx,Ry,'FaceColor','b','EdgeColor','none');hold on
 
 axis equal;grid off
 hold on

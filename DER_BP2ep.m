@@ -40,9 +40,19 @@ X  = cseg.src_chart.x;
 % 
 % end
 
-if abs(X(end-1) - 0.77462) <= 0.00005
+% if abs(X(end-1) - 0.77462) <= 0.00005
+% 
+%     read_data=coco_read_solution('','Branch 2_30',1);
+% 
+%     Segments = read_data{3,2}.Segments;
+%     Joints = read_data{3,2}.Joints;
+%     return
+% 
+% end
 
-    read_data=coco_read_solution('','Branch 2_30',1);
+if abs(X(end-1) - 0.77053) <= 0.00005
+
+    read_data=coco_read_solution('','Branch 3_30',1);
 
     Segments = read_data{3,2}.Segments;
     Joints = read_data{3,2}.Joints;
