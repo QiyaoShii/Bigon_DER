@@ -103,7 +103,7 @@ classdef Initial_Discrete_Rod
         %     obj.refLen(c) = norm(dx);
         % end
         for c=1:obj.ne
-            obj.refLen(c) = 0.1;
+            obj.refLen(c) = 1/obj.ne;
         end
         obj.voronoiRefLen = zeros(obj.nv, 1);
         for c=1:obj.nv
