@@ -10,23 +10,23 @@ ax1=axes('position',[0.1 0.15 0.85 0.8]);
 [m,BP,Mo,Num_BP,Stability_Sign] = read_BP_data('Basic_30');
 
 %%%graphics
-normX=180-cell2mat(m(Num_BP(3):Num_BP(4),8)).*180./pi*2;disY=cell2mat(m(Num_BP(3):Num_BP(4),12));
+normX=180-cell2mat(m(Num_BP(5):Num_BP(6),8)).*180./pi*2;disY=cell2mat(m(Num_BP(5):Num_BP(6),12));
 plot(normX,disY,'-','Color','k','LineWidth',2)
 hold on
 
-normX=180-cell2mat(m(2:Num_BP(3),8)).*180./pi*2;disY=cell2mat(m(2:Num_BP(3),12));
+normX=180-cell2mat(m(2:Num_BP(5),8)).*180./pi*2;disY=cell2mat(m(2:Num_BP(5),12));
 plot(normX,disY,'-','Color','[0.65 0.65 0.65]','LineWidth',2)
 hold on
 
 
 %%%Legend
-plot(180-BP(3)*180/pi*2,Mo(3),'o','MarkerSize',5.0,'MarkerEdgeColor','k','MarkerFaceColor','k')
+plot(180-BP(5)*180/pi*2,Mo(5),'o','MarkerSize',5.0,'MarkerEdgeColor','k','MarkerFaceColor','k')
 hold on
-text('Position',[180-BP(3)*180/pi*2+3,Mo(1)+4],'string','$B_1$','Interpreter','latex','FontSize',18)
+text('Position',[180-BP(5)*180/pi*2+3,Mo(5)+4],'string','$B_1$','Interpreter','latex','FontSize',18)
 hold on
-plot(180-BP(2)*180/pi*2,Mo(2),'o','MarkerSize',5.0,'MarkerEdgeColor','k','MarkerFaceColor','k')
+plot(180-BP(4)*180/pi*2,Mo(4),'o','MarkerSize',5.0,'MarkerEdgeColor','k','MarkerFaceColor','k')
 hold on
-text('Position',[180-BP(2)*180/pi*2+3,Mo(2)+4],'string','$B_2$','Interpreter','latex','FontSize',18)
+text('Position',[180-BP(4)*180/pi*2+3,Mo(4)+4],'string','$B_2$','Interpreter','latex','FontSize',18)
 hold on
 
 %% Branch 1
@@ -59,14 +59,14 @@ set(ytick,'Units','Normalized','Position', [-0.04, 0.5, 0],'string','$\alpha (\c
 %% planer configuration 30 degree
 ax2=axes('position',[0.1 0.55 0.2 0.25 ]);
 box on
-sol=coco_read_solution('Basic_30',42);
+sol=coco_read_solution('Basic_30',27);
 
 i=1;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
@@ -74,9 +74,9 @@ surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');
@@ -86,15 +86,15 @@ axis off
 view([0,-1,0])
 
 %% planer configuration 150 degree
-ax3=axes('position',[0.75 0.55 0.18 0.25 ]);
+ax3=axes('position',[0.77 0.55 0.18 0.25 ]);
 
-sol=coco_read_solution('Basic_30',9);
+sol=coco_read_solution('Basic_30',5);
 i=1;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor',[0.65,0.65,0.65],'EdgeColor','none');hold on
@@ -102,9 +102,9 @@ surf(Rz,Ry,Rx,'FaceColor',[0.65,0.65,0.65],'EdgeColor','none');hold on
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor',[0.65,0.65,0.65],'EdgeColor','none');
@@ -116,14 +116,14 @@ view([0,-1,0])
 %% Branch1 configuration 90 degree
 ax2=axes('position',[0.3 0.7 0.2 0.25]);
 box on
-sol=coco_read_solution('Branch 1_30',6);
+sol=coco_read_solution('Branch 1_30',9);
 
 i=1;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
@@ -131,9 +131,9 @@ surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');
@@ -144,14 +144,14 @@ view(10,-45)
 %% Branch1 configuration 90 degree
 ax2=axes('position',[0.3 0.15 0.2 0.25]);
 box on
-sol=coco_read_solution('Branch 1_30',17);
+sol=coco_read_solution('Branch 1_30',27);
 
 i=1;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
@@ -159,9 +159,9 @@ surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');
@@ -169,36 +169,36 @@ surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');
 axis equal
 axis off
 view(-10,-45)
-%% Branch1 configuration 90 degree
-ax2=axes('position',[0.3 0.15 0.2 0.25]);
-box on
-sol=coco_read_solution('Branch 1_30',17);
-
-i=1;
-for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
-    for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
-    end
-end
-surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
-
-i=2;
-for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
-    for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
-    end
-end
-surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');
-
-axis equal
-axis off
-view(-10,-45)
-%% Branch1 configuration 90 degree
-ax2=axes('position',[0.6 0.55 0.2 0.25]);
+% %% Branch2 configuration 90 degree
+% ax2=axes('position',[0.3 0.15 0.2 0.25]);
+% box on
+% sol=coco_read_solution('Branch 2_30',8);
+% 
+% i=1;
+% for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
+%     for k=-4:1:4
+%         Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+%         Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+%         Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
+%     end
+% end
+% surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');hold on
+% 
+% i=2;
+% for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
+%     for k=-4:1:4
+%         Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+%         Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+%         Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
+%     end
+% end
+% surf(Rz,Ry,Rx,'FaceColor','k','EdgeColor','none');
+% 
+% axis equal
+% axis off
+% view(-10,-45)
+%% Branch2 configuration 90 degree
+ax2=axes('position',[0.6 0.53 0.2 0.25]);
 
 box on
 sol=coco_read_solution('Branch 2_30',8);
@@ -206,9 +206,9 @@ sol=coco_read_solution('Branch 2_30',8);
 i=1;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','[0.65,0.65,0.65]','EdgeColor','none');hold on
@@ -216,9 +216,9 @@ surf(Rz,Ry,Rx,'FaceColor','[0.65,0.65,0.65]','EdgeColor','none');hold on
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','[0.65,0.65,0.65]','EdgeColor','none');
@@ -226,17 +226,17 @@ surf(Rz,Ry,Rx,'FaceColor','[0.65,0.65,0.65]','EdgeColor','none');
 axis equal
 axis off
 view(10,-45)
-%% Branch1 configuration 90 degree
-ax2=axes('position',[0.6 0.3 0.2 0.25]);
+%% Branch2 configuration 90 degree
+ax2=axes('position',[0.6 0.32 0.2 0.25]);
 box on
-sol=coco_read_solution('Branch 2_30',27);
+sol=coco_read_solution('Branch 2_30',22);
 
 i=1;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','[0.65,0.65,0.65]','EdgeColor','none');hold on
@@ -244,9 +244,9 @@ surf(Rz,Ry,Rx,'FaceColor','[0.65,0.65,0.65]','EdgeColor','none');hold on
 i=2;
 for j = 1:size(sol{3,2}.Segments{i}.Nodes,1)-1
     for k=-4:1:4
-        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,1);
-        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,2);
-        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*3/250.*sol{3,2}.Segments{i}.m1(j,3);
+        Rx(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,1) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,1);
+        Ry(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,2) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,2);
+        Rz(j,k+5)=sol{3,2}.Segments{i}.Nodes(j+1,3) +k.*1/250.*sol{3,2}.Segments{i}.m1(j,3);
     end
 end
 surf(Rz,Ry,Rx,'FaceColor','[0.65,0.65,0.65]','EdgeColor','none');

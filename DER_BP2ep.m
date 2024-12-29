@@ -30,7 +30,7 @@ global Segments Joints
 
 X  = cseg.src_chart.x;
 
-% if abs(X(end-1) - 1.1737) <= 0.00005
+% if abs(X(end-1) - 1.1741) <= 0.00005
 % 
 %     read_data=coco_read_solution('','Branch 1_30',1);
 % 
@@ -40,25 +40,25 @@ X  = cseg.src_chart.x;
 % 
 % end
 
-% if abs(X(end-1) - 0.77462) <= 0.00005
-% 
-%     read_data=coco_read_solution('','Branch 2_30',1);
-% 
-%     Segments = read_data{3,2}.Segments;
-%     Joints = read_data{3,2}.Joints;
-%     return
-% 
-% end
+if abs(X(end-1) - 0.7739) <= 0.00005
 
-if abs(X(end-1) - 0.77053) <= 0.00005
-
-    read_data=coco_read_solution('','Branch 3_30',1);
+    read_data=coco_read_solution('','Branch 2_30',1);
 
     Segments = read_data{3,2}.Segments;
     Joints = read_data{3,2}.Joints;
     return
 
 end
+
+% if abs(X(end-1) - 0.77053) <= 0.00005
+% 
+%     read_data=coco_read_solution('','Branch 3_30',1);
+% 
+%     Segments = read_data{3,2}.Segments;
+%     Joints = read_data{3,2}.Joints;
+%     return
+% 
+% end
 
 Length=size(X,1);x=X(1:(Length-2)/2);
 % BCLeft = [0;0;0;0;(1/N_Seg)*cos(pi/(2*N_Seg)+X(end-1));0;(1/N_Seg)*sin(pi/(2*N_Seg)+X(end-1))];

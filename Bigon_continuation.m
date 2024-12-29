@@ -36,12 +36,12 @@ run=coco(prob, 'Basic_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.04]);
 prob = coco_prob();
 prob = coco_set(prob, 'ode', 'vectorized', false);
 
-prob=DER_BP2ep(prob,'','Basic_30',38);
+prob=DER_BP2ep(prob,'','Basic_30',24);
 prob=coco_add_func(prob,'gamma',@ANGLE,[],'regular','alpha','uidx',xidx);
 prob = coco_add_event(prob, 'UZ', 'gamma', pi/4);
 prob = coco_add_event(prob, 'UZ', 'gamma', 2*pi/3);
 
-prob = coco_set(prob, 'cont', 'NPR',300 ,'PtMX', 5000,'h_min',0.01,'h_max',0.5,'MaxRes', 200); 
+prob = coco_set(prob, 'cont', 'NPR',100 ,'PtMX', 5000,'h_min',0.01,'h_max',0.05,'MaxRes', 2); 
 prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',500);
 run=coco(prob, 'Branch 1_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.01]);
 
@@ -49,26 +49,26 @@ run=coco(prob, 'Branch 1_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.01]);
 prob = coco_prob();
 prob = coco_set(prob, 'ode', 'vectorized', false);
 
-prob=DER_BP2ep(prob,'','Basic_30',26);
+prob=DER_BP2ep(prob,'','Basic_30',17);
 prob=coco_add_func(prob,'gamma',@ANGLE,[],'regular','alpha','uidx',xidx);
 prob = coco_add_event(prob, 'UZ', 'gamma', pi/6);
 prob = coco_add_event(prob, 'UZ', 'gamma', 2*pi/3);
 
-prob = coco_set(prob, 'cont', 'NPR',100 ,'PtMX', 5000,'h_min',0.01,'h_max',0.5,'MaxRes', 200); 
+prob = coco_set(prob, 'cont', 'NPR',100 ,'PtMX', 5000,'h_min',0.01,'h_max',0.5,'MaxRes', 2); 
 prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',500);
 run=coco(prob, 'Branch 2_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.01]);
-%% Branch 3
-prob = coco_prob();
-prob = coco_set(prob, 'ode', 'vectorized', false);
-
-prob=DER_BP2ep(prob,'','Basic_30',24);
-prob=coco_add_func(prob,'gamma',@ANGLE,[],'regular','alpha','uidx',xidx);
-prob = coco_add_event(prob, 'UZ', 'gamma', pi/6);
-prob = coco_add_event(prob, 'UZ', 'gamma', 2*pi/3);
-
-prob = coco_set(prob, 'cont', 'NPR',100 ,'PtMX', 5000,'h_min',0.01,'h_max',0.5,'MaxRes', 200); 
-prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',500);
-run=coco(prob, 'Branch 3_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.01]);
+% %% Branch 3
+% prob = coco_prob();
+% prob = coco_set(prob, 'ode', 'vectorized', false);
+% 
+% prob=DER_BP2ep(prob,'','Basic_30',16);
+% prob=coco_add_func(prob,'gamma',@ANGLE,[],'regular','alpha','uidx',xidx);
+% prob = coco_add_event(prob, 'UZ', 'gamma', pi/6);
+% prob = coco_add_event(prob, 'UZ', 'gamma', 2*pi/3);
+% 
+% prob = coco_set(prob, 'cont', 'NPR',100 ,'PtMX', 5000,'h_min',0.01,'h_max',0.5,'MaxRes', 200); 
+% prob = coco_set(prob,'corr', 'TOL' ,5e-5,'ItMX',500);
+% run=coco(prob, 'Branch 3_30', [], 1, {'gamma','alpha'} ,[0,pi/2-0.01]);
 
 %% Test stability
 index=7;
